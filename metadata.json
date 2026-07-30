@@ -1,0 +1,6 @@
+{
+  "name": "Mkopo Haraka",
+  "description": "Instant micro-loan application with document file uploads, Pangle SDK ad monetization management, test & live ads sandbox, and revenue analytics reporting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
