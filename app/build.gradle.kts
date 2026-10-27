@@ -46,7 +46,8 @@ android {
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
       signingConfig = signingConfigs.getByName("release")
     }
-    debug { signingConfig = signingConfigs.getByName("debugConfig") }
+    // Use the Android Gradle Plugin's standard debug keystore in CI and local builds.
+    debug { }
   }
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_11
