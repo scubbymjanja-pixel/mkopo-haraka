@@ -45,22 +45,34 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.AdLogEntity
+import com.example.pangle.PangleSdkState
 import com.example.ui.viewmodel.AnalyticsSummary
 
 @Composable
 fun AnalyticsReportScreen(
     summary: AnalyticsSummary,
     logs: List<AdLogEntity>,
+    pangleState: PangleSdkState = PangleSdkState(),
+    onRefreshAd: () -> Unit = {},
+    onAdClicked: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFFF4F6F8))
+            .background(Color.White)
             .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         item { Spacer(modifier = Modifier.height(8.dp)) }
+
+        item {
+            NativeHeaderAd(
+                pangleState = pangleState,
+                onRefreshAd = onRefreshAd,
+                onAdClicked = onAdClicked
+            )
+        }
 
         // Revenue KPI Banner Header
         item {
@@ -138,7 +150,7 @@ fun AnalyticsReportScreen(
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = AppCardColor),
                 elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
@@ -152,7 +164,8 @@ fun AnalyticsReportScreen(
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
                                 text = "Real-Time eCPM Trend (USD)",
-                                fontWeight = FontWeight.Bold,
+                                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                                fontWeight = FontWeight.ExtraBold,
                                 fontSize = 14.sp,
                                 color = Color(0xFF1E293B)
                             )
@@ -259,13 +272,15 @@ fun AnalyticsReportScreen(
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = AppCardColor),
                 elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(
                         text = "Placement Revenue Breakdown",
-                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                        fontWeight = FontWeight.ExtraBold,
                         fontSize = 14.sp,
                         color = Color(0xFF1E293B)
                     )

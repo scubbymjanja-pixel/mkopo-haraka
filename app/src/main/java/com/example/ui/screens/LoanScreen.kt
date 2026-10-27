@@ -73,12 +73,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.R
 import com.example.data.LoanApplicationEntity
 import com.example.pangle.PangleSdkState
+import com.example.ui.components.AppCardColor
+import com.example.ui.components.CenteredSectionHeading
+import com.example.ui.components.NativeHeaderAd
 import com.example.ui.components.PangleBannerAdWidget
 import com.example.ui.viewmodel.DocumentType
 import com.example.ui.viewmodel.LoanUiState
@@ -133,7 +137,7 @@ fun LoanScreen(
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFFF4F6F8))
+            .background(Color.White)
             .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
@@ -240,6 +244,15 @@ fun LoanScreen(
             }
         }
 
+        // Native ad at the top of the loan content, directly below the header.
+        item {
+            NativeHeaderAd(
+                pangleState = pangleState,
+                onRefreshAd = onRefreshBanner,
+                onAdClicked = onBannerClicked
+            )
+        }
+
         // Top Pangle Banner Ad Widget
         item {
             PangleBannerAdWidget(
@@ -254,7 +267,7 @@ fun LoanScreen(
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = AppCardColor),
                 elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
@@ -466,7 +479,7 @@ fun LoanScreen(
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = AppCardColor),
                 elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
@@ -480,7 +493,9 @@ fun LoanScreen(
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
                             text = "Required Supporting Documents",
-                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.ExtraBold,
                             fontSize = 15.sp,
                             color = Color(0xFF1E293B)
                         )
@@ -521,7 +536,7 @@ fun LoanScreen(
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = AppCardColor),
                 elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
@@ -535,7 +550,9 @@ fun LoanScreen(
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
                             text = "Applicant Details",
-                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.ExtraBold,
                             fontSize = 15.sp,
                             color = Color(0xFF1E293B)
                         )

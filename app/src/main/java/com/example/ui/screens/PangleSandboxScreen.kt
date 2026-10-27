@@ -55,6 +55,9 @@ import androidx.compose.ui.unit.sp
 import com.example.data.AdLogEntity
 import com.example.pangle.PangleManager
 import com.example.pangle.PangleSdkState
+import com.example.ui.components.AppCardColor
+import com.example.ui.components.CenteredSectionHeading
+import com.example.ui.components.NativeHeaderAd
 import com.example.ui.components.PangleBannerAdWidget
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -78,11 +81,19 @@ fun PangleSandboxScreen(
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFFF4F6F8))
+            .background(Color.White)
             .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         item { Spacer(modifier = Modifier.height(8.dp)) }
+
+        item {
+            NativeHeaderAd(
+                pangleState = pangleState,
+                onRefreshAd = onLoadBanner,
+                onAdClicked = onBannerClick
+            )
+        }
 
         // Pangle Credentials Header Card
         item {
@@ -186,7 +197,7 @@ fun PangleSandboxScreen(
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = AppCardColor),
                 elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
@@ -262,7 +273,7 @@ fun PangleSandboxScreen(
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = AppCardColor),
                 elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
@@ -328,7 +339,9 @@ fun PangleSandboxScreen(
         item {
             Text(
                 text = "Live Banner Preview (Placement: 983456260)",
-                fontWeight = FontWeight.Bold,
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                fontWeight = FontWeight.ExtraBold,
                 fontSize = 14.sp,
                 color = Color(0xFF1E293B)
             )
@@ -349,7 +362,9 @@ fun PangleSandboxScreen(
             ) {
                 Text(
                     text = "Pangle SDK Event Log Stream",
-                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(1f),
+                    textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                    fontWeight = FontWeight.ExtraBold,
                     fontSize = 14.sp,
                     color = Color(0xFF1E293B)
                 )

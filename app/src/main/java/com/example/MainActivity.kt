@@ -7,7 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -76,16 +78,22 @@ class MainActivity : ComponentActivity() {
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
+                    containerColor = Color.White,
                     snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
                     topBar = {
                         TopAppBar(
                             title = {
-                                Text(
-                                    text = "Mkopo Haraka",
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 18.sp,
-                                    color = Color.White
-                                )
+                                Box(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(
+                                        text = "Mkopo Haraka",
+                                        fontWeight = FontWeight.ExtraBold,
+                                        fontSize = 18.sp,
+                                        color = Color.White
+                                    )
+                                }
                             },
                             actions = {
                                 IconButton(
@@ -185,7 +193,10 @@ class MainActivity : ComponentActivity() {
                             )
                             2 -> AnalyticsReportScreen(
                                 summary = analyticsSummary,
-                                logs = adLogs
+                                logs = adLogs,
+                                pangleState = pangleState,
+                                onRefreshAd = { viewModel.pangleManager.loadBannerAd() },
+                                onAdClicked = { viewModel.pangleManager.onBannerClicked() }
                             )
                         }
                     }
