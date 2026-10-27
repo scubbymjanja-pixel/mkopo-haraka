@@ -46,6 +46,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.AdLogEntity
 import com.example.pangle.PangleSdkState
+import com.example.ui.components.AppCardColor
+import com.example.ui.components.NativeHeaderAd
 import com.example.ui.viewmodel.AnalyticsSummary
 
 @Composable
